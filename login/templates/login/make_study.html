@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">  
+</head>
+
+
+<div><a href="../login/researcher"><--reasearch profile</a></div>
+<div><b>New Study</b></div>
+
+<div><b>{{successMsg}}</b></div>
+
+<div><b>{{errorMsg}}</b></div>
+
+<form method='POST' action="{% url 'login:make_study' %}">
+{% csrf_token %}
+
+<div class="tableWrapper">
+<div><b>General Info<b></div>
+<table>
+
+{{ studyForm.as_table }}
+
+</table>
+</div>
+
+<div class="tableWrapper">
+
+<div><b>Sample profile: <b></div>
+<table>
+{{profileForm.as_table }}
+</table>
+</div>
+<input type="submit" value="Create Study"> </input>
+
+<!-- 
+<div>Name of study:  <input type="text" maxlength="50" name="name"> </input> </div>
+
+<div>Desription:  <textarea type="text" maxlength="50" name="description"> </textarea> </div>
+
+
+<div>Inclusion Criteria:  <textarea type="text" maxlength="50" name="inclusion"> </textarea> </div>
+<div>Exclusion Criteria:  <input type="text" maxlength="50" name="exclusion"> </input> </div>
+ -->
+
+</form>
+
+
+
+
+</html>

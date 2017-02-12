@@ -1,0 +1,27 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">  
+</head>
+
+
+<div><a href="../researcher"><--reasearch profile</a></div>
+<div><b>Edit Study</b><div>
+
+<form action="{{studyName}}" method="POST">
+{% csrf_token %}
+
+<table>
+{{form.as_table}}
+
+</table>
+<input name ="studyName" value='{{ studyName }}'></input>
+<input type="submit" name="act" value="Save"> </input>
+<input type="submit" name="act" value= "Delete" onclick="return confirm('Are you sure you want to delete this study?')"></input>
+<!-- <input onclick="alert('Are you sure?')" type="submit" name="action" value="Delete"> </input> -->
+</form>
+
+
+<b>{{msg}} </b>
+
+
+</html>

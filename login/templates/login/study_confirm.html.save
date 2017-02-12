@@ -1,0 +1,18 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">  
+</head>
+
+<div>Study '{{ studyName }}' Confirmed!</div>
+
+{{ user }}
+
+{% for i in all %}
+
+<li>{{ i }} </li>
+
+
+{% endfor %}
+<a href="login/researcher.html'>Go back</a>
+
+</html>

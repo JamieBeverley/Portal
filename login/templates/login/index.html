@@ -1,0 +1,20 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">  
+</head>
+
+<b class="titleText" >Login</b>
+
+<form action="{% url 'login:verify' %}" method="post">
+{% csrf_token %}
+
+<input type ="text" name="username"> </input>
+<input type ="password" name= "password"> </input>
+
+
+<input type = "submit" value="submit"></input>
+</form>
+
+<a href="{% url 'login:new_account' %}">New Account</a>
+
+</html>

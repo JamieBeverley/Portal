@@ -1,0 +1,41 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">  
+</head>
+
+
+<b>New Account</b>
+
+
+
+
+<form action="{% url 'login:new_account' %}" method="post">
+{% csrf_token %}
+
+    <input type="text" name="username" id="username"/>
+    <input type="text" name="password" id="password"/>
+    <input type="text" name="password(confirm)" id="password(confirm)"/>
+
+
+	<input type="submit" value="Create Account"/>
+</form>
+
+
+{% for i in usernames %}
+
+<li>Username:  {{i.username}}     |    Password: {{i.password}}</li>
+
+{% endfor %}
+
+{% if errLen != 0 %}
+<b>Error!</b>
+{% endif %}
+
+{% for i in errorMsg %}
+
+<li> {{i}} </li>
+
+{% endfor %}
+
+
+</html>

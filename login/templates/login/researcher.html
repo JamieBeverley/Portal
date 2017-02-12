@@ -1,0 +1,30 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">  
+</head>
+
+
+<div><a href="../login/home"><--home</a></div>
+
+<div>Hello {{username}}</div>
+
+<form action="./edit_study/" method='POST'>
+{% csrf_token %}
+
+
+
+{% for i in currentStudies %}
+
+  <li><button class ='btn-link' type="submit" name='act' value="{{ i.name }}" >{{ i.name }}</button></li>
+
+
+{% endfor %}
+
+</form>
+
+<a href=" {% url 'login:make_study' %}"> Make New Study </a>
+
+</html>
+
+
+<!-- <li><a href="edit_study/{{i.name}}"> {{i.name}} </a></li> -->
