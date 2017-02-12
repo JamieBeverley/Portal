@@ -34,11 +34,23 @@ tr{
 }
 
 .tableWrapper{
-	background-color:rgba(153,255,204,1);
+	background-color:rgba(153,0,204,1);
 	margin:5%;
 	/*margin-top:5%;*/
 	/*margin-bottom:5%;*/
 }
+
+.studyTitle{
+	font-size: 80px;
+
+}
+
+.center {
+    text-align: center;
+    border: 3px solid blue;
+}
+
+.titleText.center{}
 
 input{
 	font-size: 20px;
@@ -66,4 +78,13 @@ select{
   text-decoration:underline;
   font-family:inherit;
   font-size:inherit;
+}
+
+.right {
+    position: absolute;
+    right: 50px;
+    width: 300px;
+
+
+
 }

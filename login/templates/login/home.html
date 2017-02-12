@@ -1,16 +1,17 @@
 <html>
+
 <head>
     <link rel="stylesheet" type="text/css" href="/static/style.css">  
 </head>
 
-
+<div class="center">
 <form action="{%  url 'login:logout' %}">
-<input type="submit" value="Logout"></input>
+ <input type="submit" value="Logout"></input>
 </form>
 
 
-<div> Welcome {{username}}</div>
+<div style="font-size: 40px"> Welcome {{username}}</div>
 <div> Are you a... </div>
-<a href="{% url 'login:researcher' %}">Researcher</a>
-<a href="{% url 'login:participant' %} ">Participant</a>
+<div style = "font-size: 30px"><a href="{% url 'login:researcher' %}">Researcher</a></div>
+<div style = "font-size: 30px"> <a href="{% url 'login:participant' %} ">Participant</a> </div>
 </html>
