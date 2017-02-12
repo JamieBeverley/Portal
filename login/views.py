@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from login.models import Studies,Profile
-from login.forms import ParticipantForm, StudyForm, ProfileForm
+from login.forms import StudyForm, ProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import (render, redirect, get_object_or_404)
 from django.template import loader
@@ -106,20 +106,27 @@ def researcher(request):
 
 def participant(request):
 	if request.user.is_authenticated():
-		submitError = ""
+		submitMsg = ""
+		instance = Profile.objects.get(username=request.user.profile.username)
+
 		if (request.method == 'POST'):
-			form = ParticipantForm(request.POST)
+
+			form = ProfileForm(request.POST,instance=instance)
 			if form.is_valid():
-				request.user.profile.dateOfBirth = form.cleaned_data['dateOfBirth']
-				request.user.profile.save()
+				form.save()
+				submitMsg="Changes updated"
 			else: 
-				submitError = "Invalid Entry!"
-		form = ProfileForm()
+				submitMsg = "Invalid Entry!"
+		form = ProfileForm(instance=instance)
 		template = loader.get_template('login/participant.html')
-		suggestedStudies = ["One","Two","Three","Four"]
+		studyProfiles = Profile.objects.filter(isStudy=True)
+		suggestedStudies=[]
+		for i in studyProfiles:
+			if i.isSimilar(request.user.profile):
+				suggestedStudies.append(i.username)
 		name = request.user.username
 		dateOfBirth = request.user.profile.dateOfBirth
-		context = {'username':name, 'suggestedStudies':suggestedStudies, 'form':form, 'submitError':submitError, 'dateOfBirth':dateOfBirth}
+		context = {'username':name, 'suggestedStudies':suggestedStudies, 'form':form, 'submitMsg':submitMsg}
 		return HttpResponse(template.render(context,request))
 	else:
 		return redirect('..')
@@ -155,6 +162,7 @@ def make_study(request):
 				study = StudyForm(request.POST).save()
 				study.creator = request.user.username
 				sampleProfile = ProfileForm(request.POST).save()
+				sampleProfile.isStudy = True
 				sampleProfile.username = request.user.username+'/'+study.name
 				sampleProfile.save()
 				# return HttpResponse(study.name)
@@ -188,13 +196,17 @@ def edit_study(request):
 		studyName=''
 		if (request.method=="POST"):
 			if (request.POST['act'] == 'Delete'):
-				study = Studies.objects.get(name=studyName,creator=request.user)
-				study.delete();
-				return redirect('../researcher')
-			elif (request.POST['act'] == 'Save'): 
 
-				instance = Studies.objects.get(name=request.POST['studyName'],creator=request.user)
-				form = StudyForm(Studies,instance=instance)
+				study = Studies.objects.get(name=request.POST['studyName'],creator=request.user)
+				study.delete();
+				return redirect('../login/researcher')
+			elif (request.POST['act'] == 'Save'): 
+				studyName = request.POST['studyName']
+				# instance = get_object_or_404(Studies,  creator=request.user.username, name=request.POST['studyName'])
+				instance = Studies.objects.get(name=studyName,creator=request.user)
+				form = StudyForm(data=request.POST,instance=instance)
+
+				v = form.is_valid()
 
 				if form.is_valid():
 					form.save()
@@ -203,7 +215,6 @@ def edit_study(request):
 					msg = "not saved"				
 			else:
 				studyName = request.POST['act']
-		# instance = get_object_or_404(Studies,  creator=request.user.username, name=studyName)
 				instance = Studies.objects.get(name=studyName,creator=request.user)
 				form = StudyForm(instance=instance)
 

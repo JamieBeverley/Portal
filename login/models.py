@@ -26,6 +26,7 @@ SEX_CHOICES = (('m','Male'),('f','Female'),('mtf','MtF Female'),('ftm','FtM Male
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+	isStudy= models.BooleanField(default=False)
 	# This is kind of hacky: used so 'Profile' can be used both as a Research study criteria 
 	# (like a fake person who meets all inclusion criteria), and as an actual profile.
 	username = models.CharField(max_length=150, primary_key=True)
@@ -33,7 +34,10 @@ class Profile(models.Model):
 	height = models.IntegerField(null=True, blank = True, verbose_name = "Height (cm)", help_text="height in cm" )
 	weight = models.IntegerField(null=True, blank = True, verbose_name = "Weight (kg)", help_text="weight in kilograms" )
 	sex = models.CharField(max_length = 3, choices=SEX_CHOICES, null=True, blank=True, verbose_name = "Identified Sex")
+	
 
+	def isSimilar(self,other):
+		return self.dateOfBirth==other.dateOfBirth and self.height==other.height and self.weight==other.weight and self.sex==other.sex
 
 class Studies(models.Model):
 	# of the form username/studyname

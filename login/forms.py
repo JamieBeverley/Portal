@@ -1,9 +1,9 @@
 from django import forms
 from models import Profile, Studies
 
-class ParticipantForm(forms.Form):
-	years = [x for x in range(1920,2018)]
-	dateOfBirth = forms.DateField(widget=forms.SelectDateWidget(years=years))
+# class ParticipantForm(forms.Form):
+# 	years = [x for x in range(1920,2018)]
+# 	dateOfBirth = forms.DateField(widget=forms.SelectDateWidget(years=years))
 
 class ProfileForm(forms.ModelForm):
 
