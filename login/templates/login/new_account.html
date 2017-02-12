@@ -4,21 +4,43 @@
 </head>
 
 
-<b>New Account</b>
-
-
-
+<div class="center"><b class="titleText" style="font-size: 40px">New Account</b> 
 
 <form action="{% url 'login:new_account' %}" method="post">
 {% csrf_token %}
 
-    <input type="text" name="username" id="username"/>
-    <input type="text" name="password" id="password"/>
-    <input type="text" name="password(confirm)" id="password(confirm)"/>
+<table>
 
+<tr>
+	<th style="font-size: 15px">  first name </th>
+	<td> <input type="text" first name="first name" id="first name"/> </td>
+</tr>
 
-	<input type="submit" value="Create Account"/>
+<tr>
+	<th style= "font-size: 15px"> last name </th> 
+	<td> <input type="text" last name="last name" id="last name"/> </td>
+</tr>
+<tr>
+	<th style= "font-size: 15px"> email address</th>
+	<td> <input type="text" last name="email adress" id="email adress"/> </td>
+</tr>
+<tr> 
+	<th style= "font-size: 15px"> username </th> 
+	<td><input type="text" name="username" id="username"/> </td>
+</tr>
+<tr>
+
+ 	 <th style = "font-size: 15px"> password </th>   
+ 	 <td><input type="text" name="password" id="password"/> </td>
+ </tr>
+ <tr>
+	<th style= "font-size: 15px"> confirm password </th> 
+	<td> <input type="text" name="password(confirm)" id="password(confirm)"/> </td>
+</tr>
+</table>
+	<input type="submit" value="Create Account"> </input>
 </form>
+
 
 
 {% for i in usernames %}
