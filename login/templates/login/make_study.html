@@ -2,11 +2,13 @@
 
 {% block content %}
 
+<div class = "container"</div>
 <html>
 
 <head>
     <link rel="stylesheet" type="text/css" href="/static/style.css">  
 </head>
+
 
 
 <div><a href="../login/researcher"><--reasearch profile</a></div>
@@ -19,7 +21,6 @@
 <form method='POST' action="{% url 'login:make_study' %}">
 {% csrf_token %}
 
-<div class="tableWrapper">
 <div><b>General Info<b></div>
 <table>
 
@@ -28,7 +29,7 @@
 </table>
 </div>
 
-<div class="tableWrapper">
+<div class="container">
 
 <div><b>Sample profile: <b></div>
 <table>
