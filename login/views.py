@@ -206,8 +206,6 @@ def edit_study(request):
 				instance = Studies.objects.get(name=studyName,creator=request.user)
 				form = StudyForm(data=request.POST,instance=instance)
 
-				v = form.is_valid()
-
 				if form.is_valid():
 					form.save()
 					msg="succesfully saved"
