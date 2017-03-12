@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/static/style.css">  
@@ -13,6 +17,8 @@
 
 
 {% endfor %}
-<a href="login/researcher.html'>Go back</a>
+<a href="login/researcher.html">Go back</a>
 
 </html>
+
+{% endblock %}

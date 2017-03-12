@@ -1,17 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <html>
 
-<head>
+<!-- <head>
     <link rel="stylesheet" type="text/css" href="/static/style.css">  
-</head>
+</head> -->
 
-<div class="center">
+<div class="jumbotron">
 <form action="{%  url 'login:logout' %}">
  <input type="submit" value="Logout"></input>
 </form>
 
-
+<div class='container bg-info'>
 <div style="font-size: 40px"> Welcome {{username}}</div>
 <div> Are you a... </div>
 <div style = "font-size: 30px"><a href="{% url 'login:researcher' %}">Researcher</a></div>
 <div style = "font-size: 30px"> <a href="{% url 'login:participant' %} ">Participant</a> </div>
+</div>
+{% endblock %}
 </html>
