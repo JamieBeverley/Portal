@@ -8,9 +8,16 @@
 </head>
 
 
-<div><a href="../login/home"><--home</a></div>
+<div class = "container"</div>
 
-<div>Hello {{username}}</div>
+<div>
+<a href="../login/home"" class="btn btn-primary" role="button">Home</a> 
+</div>
+
+
+
+  <div style = "font-size: 30px"> 
+ Welcome {{username}}!</div>
 
 <form action="./edit_study" method='POST'>
 {% csrf_token %}
@@ -26,10 +33,12 @@
 
 </form>
 
-<a href=" {% url 'login:make_study' %}"> Make New Study </a>
+<a href="{% url 'login:make_study' %}" class="btn btn-primary" role="button">Make New Study</a> 
+</div>
 
 </html>
 {% endblock %}
+
 
 
 <!-- <li><a href="edit_study/{{i.name}}"> {{i.name}} </a></li> -->
