@@ -2,14 +2,23 @@
 
 {% block content %}
 
+<div class = "container"</div>
 <html>
 
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/static/style.css">  
 </head>
 
 
-<div><a href="../login/researcher"><--reasearch profile</a></div>
+
+
+
+<div> <a href="../login/researcher" class="btn btn-primary" role="button">Back</a> </div>
+
+
+
 <div><b class="studyTitle">New Study</b></div>
 
 <div><b>{{successMsg}}</b></div>
@@ -19,23 +28,32 @@
 <form method='POST' action="{% url 'login:make_study' %}">
 {% csrf_token %}
 
-<div class="tableWrapper">
 <div><b>General Info<b></div>
 <table>
 
-{{ studyForm.as_table }}
+<div class="modal fade">
+    <div class="modal-content">
+      <div class="modal-body">
+		{{ studyForm.as_table }}
+	  </div>
+	</div>
+</div>
 
 </table>
 </div>
 
-<div class="tableWrapper">
+<div class="container">
 
 <div><b>Sample profile: <b></div>
 <table>
 {{profileForm.as_table }}
 </table>
 </div>
-<input type="submit" value="Create Study"> </input>
+      <div class="container text-center">
+
+
+<input type="submit" value="Create Study" class="btn btn-primary" > </input>  </div>
+
 
 <!-- 
 <div>Name of study:  <input type="text" maxlength="50" name="name"> </input> </div>
@@ -53,6 +71,7 @@
 
 
 </html>
+
 
 
 {% endblock %}

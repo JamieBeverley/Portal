@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css">  
 </head> -->
 
+<div class= "bg-info, container"
 <div class="jumbotron">
 <form action="{%  url 'login:logout' %}">
  <input type="submit" value="Logout"></input>
@@ -16,8 +17,11 @@
 <div class='container bg-info'>
 <div style="font-size: 40px"> Welcome {{username}}</div>
 <div> Are you a... </div>
-<div style = "font-size: 30px"><a href="{% url 'login:researcher' %}">Researcher</a></div>
-<div style = "font-size: 30px"> <a href="{% url 'login:participant' %} ">Participant</a> </div>
+<div style = "font-size: 30px">
+	<a href="{% url 'login:researcher' %}" class="btn btn-info" role="button">Reseracher</a> 
+
+<div style = "font-size: 30px"> 
+	<a href="{% url 'login:participant' %}" class="btn btn-info" role="button">Particpant</a> 
 </div>
 {% endblock %}
 </html>
