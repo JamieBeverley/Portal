@@ -46,13 +46,6 @@
 </form>
 
 
-
-{% for i in usernames %}
-
-<li>Username:  {{i.username}}     |    Password: {{i.password}}</li>
-
-{% endfor %}
-
 {% if errLen != 0 %}
 <b>Error!</b>
 {% endif %}
